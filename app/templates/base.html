@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Microblog {% block title%} {% endblock title%}</title>
+</head>
+
+<style>
+  html {
+    font-size: 110%;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 2rem;
+  }
+</style>
+
+<body>
+  <div class="nav">
+    <h2 style="display: inline;">Microblog</h2> 
+    <div>
+      <span><a href="{{ url_for('home')}}">Home</a></span>
+      |
+      <span><a href="{{ url_for('about')}}">About</a></span>
+      |
+      <span><a href="{{ url_for('login')}}">Login</a></span>
+    </div>
+  </div>
+  <hr />
+  <div class="content">
+  {% block content %} {% endblock content %}
+  </div>
+</body>
+
+</html>

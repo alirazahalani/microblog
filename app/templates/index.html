@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+<!-- title -->
+{% block title %} Home {% endblock title %}
+<!-- content -->
+{% block content %}
+<h1>{{user.username | capitalize}} - Blog</h1>
+{% for post in posts %}
+<span>
+    {{post.author.username}} says <b>{{ post.body }} </b>.
+</span>
+{% endfor %}
+<br />
+{% endblock content %}

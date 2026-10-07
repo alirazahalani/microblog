@@ -1,12 +1,37 @@
-from app import app
+import pdb
+from flask import render_template, redirect, url_for
+from app import app, forms 
 
 
 @app.route('/')
-@app.route('/home/')
-def hello():
-    return 'Hello World!'
+@app.route('/index/')
+def home():
+    user = {
+        'username': "alireza"
+    }
+    posts = [
+        {
+            'author': {'username': 'alireza'},
+            'body': "My First post"
+        },
+        {
+            'author': {'username': 'yasmin'},
+            'body': "My second post"
+        }
+    ]
+    return render_template('index.html', title="Home", posts=posts, user=user)
 
 
 @app.route('/about')
 def about():
-    return "About Microblog"
+    return render_template('about.html', title="About")
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = forms.LoginForm()
+    if form.validate_on_submit():
+        print(form.data)
+        return redirect(url_for('home'))
+    else:
+        return render_template('login.html', form=form)
