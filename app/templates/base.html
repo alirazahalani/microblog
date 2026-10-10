@@ -19,6 +19,7 @@
     margin: 0 auto;
     padding: 0 2rem;
   }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@
 
 <body>
   <div class="nav">
-    <h2 style="display: inline;">Microblog</h2> 
+    <h2 style="display: inline;">Microblog</h2>
     <div>
       <span><a href="{{ url_for('home')}}">Home</a></span>
       |
@@ -42,7 +43,14 @@
   </div>
   <hr />
   <div class="content">
-  {% block content %} {% endblock content %}
+    {% with messages = get_flashed_messages() %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endwith %}
+    {% block content %} {% endblock content %}
   </div>
 </body>
 

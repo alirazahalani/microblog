@@ -1,5 +1,5 @@
 import pdb
-from flask import render_template, redirect, url_for
+from flask import flash, render_template, redirect, url_for
 from app import app, forms 
 
 
@@ -31,7 +31,7 @@ def about():
 def login():
     form = forms.LoginForm()
     if form.validate_on_submit():
-        print(form.data)
+        flash(f"User: {form.username.data}, logged in, {form.remember_me.data}")
         return redirect(url_for('home'))
     else:
         return render_template('login.html', form=form)
